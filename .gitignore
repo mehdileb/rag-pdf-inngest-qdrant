@@ -1,0 +1,17 @@
+# Local credentials and environment
+.env
+.env.*
+!.env.example
+# User files and vector DB persisted data
+/uploads/
+/qdrant_storage/
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.egg-info/
+# Local IDE files
+.idea/
+.vscode/
+.DS_Store
