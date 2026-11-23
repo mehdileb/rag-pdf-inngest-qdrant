@@ -18,21 +18,4 @@ These are **observed limitations and proposed improvements**, not claims of impl
 | No tests demonstrated | Reliability not verified | Unit tests + integration tests + evaluation set |
 | No deployment configuration beyond local dev shown | Production readiness not verified | Secrets handling, containers, health checks, monitoring |
 
-## Model/cost decision: accurate interview framing
 
-- `text-embedding-3-large` is a paid API embedding model, defaulting to 3072 dimensions. The tutorial **chooses** it; the archive provides no evaluation proving it is best for the specific PDFs.
-- `gpt-4o-mini` is a separate, paid generation model. **The two are not inherently coupled.** There is no rule that `text-embedding-3-large` is the embedding model that “works with GPT-4o mini best.”
-- To lower costs, benchmark `text-embedding-3-small`, local sentence-transformer encoders and different generation models, measuring retrieval recall/precision, answer groundedness, latency and cost on representative questions.
-- For an alternate embedding model, recompute existing document vectors and ensure its dimension is reflected in Qdrant's collection config. Changing generation models generally does not require re-embedding by itself.
-- Never say you sold the project, performed client trials, or measured optimality unless you can substantiate those facts.
-
-## Candidate's potential independent extension roadmap
-
-1. Add content-hash IDs and `tenant_id` to payloads.
-2. Implement a typed `/documents` API / job status endpoint with FastAPI.
-3. Add OCR fallback for image-only PDFs.
-4. Return scored, page-cited search hits and document-filtered retrieval.
-5. Test on a small labeled Q&A dataset; compare cost/quality across embedding models.
-6. Deploy with secrets, object storage and observability; document reproducible runs.
-
-**Status:** proposals only — not implemented in the supplied code.
